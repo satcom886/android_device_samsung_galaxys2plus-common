@@ -126,7 +126,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.interface=wlan0 \
 	mobiledata.interfaces=rmnet0 \
-	ro.telephony.ril_class=SamsungBCMRIL
+	ro.telephony.ril_class=SamsungBCMRIL \
+	ro.telephony.call_ring.multiple=0 \
+	ro.telephony.call_ring=0
 
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 
