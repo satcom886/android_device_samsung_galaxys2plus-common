@@ -34,6 +34,8 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
 # Feel free to increase when needed
 # See: http://forum.xda-developers.com/showpost.php?p=55293011&postcount=1
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1099956224
+# Disable journaling on system.img to save space.
+BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
 
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 4404002816
 BOARD_CACHEIMAGE_PARTITION_SIZE := 1073741824
