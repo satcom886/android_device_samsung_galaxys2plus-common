@@ -103,6 +103,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	persist.brcm.cp_crash=none \
 	persist.brcm.ap_crash=none
 
+# HDCP on
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.brcm.gralloc.force_hdcp=1
+
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
 	brcm.hwc.no-hdmi-trans=1 \
