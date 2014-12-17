@@ -70,6 +70,14 @@ public class SamsungBCMRIL extends RIL implements CommandsInterface {
         send(rr);
     }
 
+    static String
+    responseToString(int response) {
+        switch (response) {
+            case RIL_UNSOL_STK_SEND_SMS_RESULT: return "RIL_UNSOL_STK_SEND_SMS_RESULT";
+            default: return RIL.responseToString(response);
+        }
+    }
+
     protected RILRequest
     processSolicited (Parcel p) {
         int serial, error;
@@ -297,6 +305,40 @@ public class SamsungBCMRIL extends RIL implements CommandsInterface {
             }
         }
         return rr;
+    }
+
+    @Override
+    protected void
+    processUnsolicited (Parcel p) {
+        int dataPosition = p.dataPosition();
+        int response = p.readInt();
+        Object ret;
+
+        try{switch(response) {
+            case RIL_UNSOL_STK_SEND_SMS_RESULT: ret = responseInts(p); break; // Samsung STK
+            default:
+                // Rewind the Parcel
+                p.setDataPosition(dataPosition);
+
+                // Forward responses that we are not overriding to the super class
+                super.processUnsolicited(p);
+                return;
+        }} catch (Throwable tr) {
+            Rlog.e(RILJ_LOG_TAG, "Exception processing unsol response: " + response +
+                " Exception: " + tr.toString());
+            return;
+        }
+
+        switch(response) {
+            case RIL_UNSOL_STK_SEND_SMS_RESULT:
+                if (RILJ_LOGD) unsljLogRet(response, ret);
+
+                if (mCatSendSmsResultRegistrant != null) {
+                    mCatSendSmsResultRegistrant.notifyRegistrant(
+                            new AsyncResult (null, ret, null));
+                }
+            break;
+        }
     }
 
     @Override
