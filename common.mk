@@ -6,7 +6,7 @@ DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
 
 PRODUCT_LOCALES += hdpi
 
-# Screen
+# Boot animation
 TARGET_SCREEN_WIDTH := 480
 TARGET_SCREEN_HEIGHT := 800
 
@@ -53,6 +53,7 @@ PRODUCT_PACKAGES += \
 	audio.usb.default \
 	audio.r_submix.default
 
+# Audio configuration
 PRODUCT_COPY_FILES += \
 	$(COMMON_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
@@ -61,7 +62,9 @@ USE_CUSTOM_AUDIO_POLICY := 1
 # Media
 PRODUCT_COPY_FILES += \
 	$(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-	$(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
+	$(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+
+PRODUCT_COPY_FILES += \
 	frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
