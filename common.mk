@@ -17,14 +17,7 @@ PRODUCT_COPY_FILES += \
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
-	setup_fs \
-	e2fsck
-
-# F2FS
-PRODUCT_PACKAGES += \
-	mkfs.f2fs \
-	fsck.f2fs \
-	fibmap.f2fs
+	setup_fs
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
