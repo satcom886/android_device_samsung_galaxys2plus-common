@@ -78,7 +78,11 @@ PRODUCT_PACKAGES += \
 	charger_res_images \
 	com.android.future.usb.accessory
 
-# Properties
+## Properties
+# Camera
+PRODUCT_PROPERTY_OVERRIDES += \
+	camera2.portability.force_api=1
+
 # Logging
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.brcm.log=none \
