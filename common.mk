@@ -151,9 +151,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
-# We have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
-
 # Extended JNI checks
 # The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs 
 # before they have a chance to cause problems.
