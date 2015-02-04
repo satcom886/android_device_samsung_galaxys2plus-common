@@ -1,27 +1,19 @@
 USE_CAMERA_STUB := true
 
-# Board
-TARGET_BOARD_PLATFORM := capri
-
-# Bootloader
-TARGET_NO_BOOTLOADER := true
-TARGET_BOOTLOADER_BOARD_NAME := capri
-
-# CPU
 TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_NO_BOOTLOADER := true
+TARGET_BOARD_PLATFORM := capri
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := cortex-a9
 TARGET_CPU_SMP := true
 
-# Hardware rendering
-USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := device/samsung/galaxys2plus-common/configs/egl.cfg
-BOARD_EGL_WORKAROUND_BUG_10194508 := true
-BOARD_USE_MHEAP_SCREENSHOT := true
-TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS -DCAPRI_HWC -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL -DREFBASE_JB_MR1_COMPAT_SYMBOLS
+TARGET_BOOTLOADER_BOARD_NAME := capri
+
+BOARD_KERNEL_CMDLINE := console=ttyS0,115200n8 mem=832M@0xA2000000 androidboot.console=ttyS0 vc-cma-mem=0/176M@0xCB000000
+BOARD_KERNEL_BASE := 0xa2000000
+BOARD_KERNEL_PAGESIZE := 4096
 
 # File system
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -34,19 +26,25 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 1073741824
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# Kernel
-TARGET_KERNEL_SOURCE := kernel/samsung/galaxys2plus-common
-BOARD_KERNEL_CMDLINE := console=ttyS0,115200n8 mem=832M@0xA2000000 androidboot.console=ttyS0 vc-cma-mem=0/176M@0xCB000000
-BOARD_KERNEL_BASE := 0xa2000000
-BOARD_KERNEL_PAGESIZE := 4096
-
-# Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
+
+# Kernel
+TARGET_KERNEL_SOURCE := kernel/samsung/galaxys2plus-common
+
+# Recovery
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 
-# Hardware
+# Hardware rendering
+USE_OPENGL_RENDERER := true
+BOARD_EGL_CFG := device/samsung/galaxys2plus-common/configs/egl.cfg
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+BOARD_USE_MHEAP_SCREENSHOT := true
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS -DCAPRI_HWC -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL -DREFBASE_JB_MR1_COMPAT_SYMBOLS
+
+# CMHW
 BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/galaxys2plus-common/cmhw/
 
 # RIL
@@ -61,7 +59,7 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUEDROID_VENDOR_CONF := device/samsung/galaxys2plus-common/bluetooth/libbt_vndcfg.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/galaxys2plus-common/bluetooth
 
-# Wi-Fi
+# Connectivity - Wi-Fi
 BOARD_HAVE_SAMSUNG_WIFI             := true
 BOARD_WLAN_DEVICE                   := bcmdhd
 BOARD_WLAN_DEVICE_REV               := bcm4330
