@@ -1,5 +1,8 @@
 USE_CAMERA_STUB := true
 
+# Inherit from the proprietary version
+-include vendor/samsung/galaxys2plus-common/BoardConfigVendor.mk
+
 TARGET_ARCH := arm
 TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := capri
