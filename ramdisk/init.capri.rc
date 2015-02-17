@@ -390,6 +390,7 @@ on charger
 
 on fs
     mount_all /fstab.capri
+    swapon_all /fstab.capri
 
     # For NV Read/Write
     chown radio system /dev/block/mmcblk0p1
