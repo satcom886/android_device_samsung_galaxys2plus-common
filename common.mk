@@ -1,4 +1,4 @@
-$(call inherit-product-if-exists, vendor/samsung/galaxys2plus-common/galaxys2plus-common-vendor.mk)
+$(call inherit-product, vendor/samsung/galaxys2plus-common/galaxys2plus-common-vendor.mk)
 
 COMMON_PATH := device/samsung/galaxys2plus-common
 
