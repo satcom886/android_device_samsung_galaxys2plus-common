@@ -3,16 +3,22 @@ USE_CAMERA_STUB := true
 # Inherit from the proprietary version
 -include vendor/samsung/galaxys2plus-common/BoardConfigVendor.mk
 
-TARGET_ARCH := arm
-TARGET_NO_BOOTLOADER := true
+# Platform
 TARGET_BOARD_PLATFORM := capri
+
+# CPU
+TARGET_ARCH := arm
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := cortex-a9
 
+# Bootloader
+TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := capri
 
+# Kernel
+TARGET_KERNEL_SOURCE := kernel/samsung/galaxys2plus-common
 BOARD_KERNEL_CMDLINE := console=ttyS0,115200n8 mem=832M@0xA2000000 androidboot.console=ttyS0 vc-cma-mem=0/176M@0xCB000000
 BOARD_KERNEL_BASE := 0xa2000000
 BOARD_KERNEL_PAGESIZE := 4096
@@ -23,23 +29,15 @@ TARGET_USERIMAGES_USE_F2FS := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610612736
-
-# Actual size is 4404019200.
-# Reduced by 16384 to fix device encryption.
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 4404002816
-
 BOARD_CACHEIMAGE_PARTITION_SIZE := 1073741824
 BOARD_FLASH_BLOCK_SIZE := 262144
-
-BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
-
-# Kernel
-TARGET_KERNEL_SOURCE := kernel/samsung/galaxys2plus-common
 
 # Recovery
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
+BOARD_HAS_NO_SELECT_BUTTON := true
 
 # Hardware rendering
 USE_OPENGL_RENDERER := true
