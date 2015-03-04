@@ -96,63 +96,8 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
 	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
-## Properties
-# Camera
-PRODUCT_PROPERTY_OVERRIDES += \
-	camera2.portability.force_api=1
-
-# Logging
-PRODUCT_PROPERTY_OVERRIDES += \
-	persist.brcm.log=none \
-	persist.brcm.ap_crash=none \
-	persist.brcm.cp_crash=none
-
-# HDCP on
-PRODUCT_PROPERTY_OVERRIDES += \
-	persist.brcm.gralloc.force_hdcp=1
-
-# Enable USB OTG interface
-PRODUCT_PROPERTY_OVERRIDES += \
-	persist.sys.isUsbOtgEnabled=true
-
-# Set default USB interface
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config=mtp
-
-# Radio
-PRODUCT_PROPERTY_OVERRIDES += \
-	mobiledata.interfaces=rmnet0 \
-	ro.telephony.ril_class=SamsungBCMRIL \
-	ro.ril.hsxpa=1 \
-	ro.ril.gprsclass=10 \
-	ro.telephony.call_ring=0 \
-	ro.telephony.call_ring.multiple=0
-
-# Graphics
-PRODUCT_PROPERTY_OVERRIDES += \
-	brcm.hwc.no-hdmi-trans=1 \
-	debug.hwui.render_dirty_regions=false \
-	ro.opengles.version=131072 \
-	ro.zygote.disable_gl_preload=1
-
-# TV out
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.tvout.enable=true
-
-# Wi-Fi
-PRODUCT_PROPERTY_OVERRIDES += \
-	wifi.interface=wlan0
-
-# FM Radio SNR
-PRODUCT_PROPERTY_OVERRIDES += \
-	service.brcm.fm.start_snr=41 \
-	service.brcm.fm.stop_snr=20
-
-# Override phone-hdpi-512-dalvik-heap to match value on stock
-# - helps pass CTS com.squareup.okhttp.internal.spdy.Spdy3Test#tooLargeDataFrame)
-# (property override must come before included property)
-PRODUCT_PROPERTY_OVERRIDES += \
-	dalvik.vm.heapgrowthlimit=56m
+# System properties
+$(call inherit-product, device/samsung/galaxys2plus-common/system_prop.mk)
 
 # Dalvik heap config
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
