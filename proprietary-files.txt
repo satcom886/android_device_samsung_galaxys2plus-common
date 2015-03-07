@@ -31,6 +31,7 @@ etc/Volume.db
 
 # Wi-Fi
 etc/wifi/bcmdhd_apsta.bin
+etc/wifi/bcmdhd_p2p.bin
 etc/wifi/bcmdhd_sta.bin
 etc/wifi/nvram_net.txt
 
