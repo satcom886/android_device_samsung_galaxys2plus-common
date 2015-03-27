@@ -88,6 +88,7 @@ TARGET_OTA_ASSERT_DEVICE := s2ve,s2vep,i9105,i9105p
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 
 # Boot animation
