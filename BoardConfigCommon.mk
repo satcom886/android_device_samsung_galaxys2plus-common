@@ -122,6 +122,7 @@ BOARD_SEPOLICY_UNION += \
     install_recovery.te \
     kernel.te \
     macloader.te \
+    netd.te \
     rild.te \
     shell.te \
     system_app.te \
