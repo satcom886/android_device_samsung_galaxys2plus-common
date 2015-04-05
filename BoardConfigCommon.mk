@@ -36,7 +36,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Recovery
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
-TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
+TARGET_RECOVERY_PIXEL_FORMAT := ABGR_8888
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # Hardware rendering
