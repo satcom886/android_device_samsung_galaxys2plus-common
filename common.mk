@@ -32,12 +32,6 @@ PRODUCT_COPY_FILES += \
 
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 
-# GPS
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/gps.cer:system/bin/gps.cer \
-    $(COMMON_PATH)/configs/gps.conf:system/etc/gps.conf \
-    $(COMMON_PATH)/configs/glconfig.xml:system/etc/gps/glconfig.xml
-
 # Audio modules
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -52,8 +46,7 @@ USE_CUSTOM_AUDIO_POLICY := 1
 
 # Media
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    $(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+    $(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \

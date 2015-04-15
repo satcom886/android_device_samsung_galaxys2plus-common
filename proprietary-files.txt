@@ -6,6 +6,7 @@ bin/cate_rpc_util
 bin/emma
 bin/geomagneticd
 bin/glgps
+bin/gps.cer
 bin/gpslogd
 bin/macloader
 bin/mttlogger
@@ -24,6 +25,9 @@ etc/DiamondVoice_Filter_NB.txt
 etc/DiamondVoice_Filter_WB.txt
 etc/DiamondVoice_NB.txt
 etc/DiamondVoice_WB.txt
+etc/gps/glconfig.xml
+etc/gps.conf
+etc/media_profiles.xml
 etc/sensors.conf
 etc/srm.bin
 etc/tinyucm.conf
