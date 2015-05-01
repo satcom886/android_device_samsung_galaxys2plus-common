@@ -25,9 +25,9 @@
 
     <string-array name="pref_camera_iso_entryvalues">
          <item>auto</item>
-         <item>100</item>
-         <item>200</item>
-         <item>400</item>
-         <item>800</item>
+         <item>ISO100</item>
+         <item>ISO200</item>
+         <item>ISO400</item>
+         <item>ISO800</item>
      </string-array>
 </resources>
