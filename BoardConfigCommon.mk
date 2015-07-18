@@ -37,6 +37,7 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 TARGET_RECOVERY_PIXEL_FORMAT := ABGR_8888
 BOARD_HAS_NO_SELECT_BUTTON := true
+TARGET_RECOVERY_DENSITY := hdpi
 
 # Hardware rendering
 USE_OPENGL_RENDERER := true
