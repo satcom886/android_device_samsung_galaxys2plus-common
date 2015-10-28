@@ -13,8 +13,12 @@ TARGET_SCREEN_HEIGHT := 800
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/ramdisk/fstab.capri:root/fstab.capri \
     $(COMMON_PATH)/ramdisk/init.bcm281x5.usb.rc:root/init.bcm281x5.usb.rc \
-    $(COMMON_PATH)/ramdisk/init.log.rc:root/init.log.rc
+    $(COMMON_PATH)/ramdisk/init.capri.rc:root/init.capri.rc \
+    $(COMMON_PATH)/ramdisk/init.log.rc:root/init.log.rc \
+    $(COMMON_PATH)/ramdisk/init.recovery.capri.rc:root/init.recovery.capri.rc \
+    $(COMMON_PATH)/ramdisk/ueventd.capri.rc:root/ueventd.capri.rc
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \

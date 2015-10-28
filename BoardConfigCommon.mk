@@ -18,6 +18,7 @@ TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := capri
 
 # Kernel
+TARGET_KERNEL_CONFIG := cyanogenmod_galaxys2plus_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/galaxys2plus-common
 BOARD_KERNEL_CMDLINE := console=ttyS0,115200n8 mem=832M@0xA2000000 androidboot.console=ttyS0 vc-cma-mem=0/176M@0xCB000000
 BOARD_KERNEL_BASE := 0xa2000000
@@ -39,6 +40,7 @@ BOARD_FLASH_BLOCK_SIZE := 262144
 BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Recovery
+TARGET_RECOVERY_FSTAB := device/samsung/galaxys2plus-common/ramdisk/fstab.capri
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 TARGET_RECOVERY_PIXEL_FORMAT := ABGR_8888
 BOARD_HAS_NO_SELECT_BUTTON := true
