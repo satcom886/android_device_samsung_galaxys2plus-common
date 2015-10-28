@@ -77,8 +77,7 @@ PRODUCT_COPY_FILES += \
 # Packages
 PRODUCT_PACKAGES += \
     SamsungServiceMode \
-    charger_res_images \
-    com.android.future.usb.accessory
+    charger_res_images
 
 # Permissions
 PRODUCT_COPY_FILES += \
