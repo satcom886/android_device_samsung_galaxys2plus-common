@@ -39,7 +39,7 @@ CapriAudioPolicyManager::CapriAudioPolicyManager(AudioPolicyClientInterface *cli
 
 void CapriAudioPolicyManager::setPhoneState(audio_mode_t state)
 {
-    if (!isStateInCall(mPhoneState) && isStateInCall(state)) {
+    if (!isStateInCall(mEngine->getPhoneState()) && isStateInCall(state)) {
 		// We need to reset mLastVoiceVolume every call start to force the
 		// volume to be always set since the HAL sometimes forget about it
         ALOGI("Resetting mLastVoiceVolume");

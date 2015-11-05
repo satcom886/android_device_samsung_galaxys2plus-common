@@ -36,7 +36,8 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1099956224
 
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 4404002816
-BOARD_FLASH_BLOCK_SIZE := 262144
+BOARD_CACHEIMAGE_PARTITION_SIZE := 1073741824
+BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Recovery
@@ -102,9 +103,6 @@ TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 # jemalloc causes a lot of random crash on free()
 MALLOC_IMPL := dlmalloc
 
-# Logging
-TARGET_USES_LOGD := false
-
 # SkTextBox for libtvout
 BOARD_USES_SKTEXTBOX := true
 
@@ -112,32 +110,4 @@ BOARD_USES_SKTEXTBOX := true
 EXTENDED_FONT_FOOTPRINT := true
 
 # SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/galaxys2plus-common/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    property_contexts \
-    service_contexts \
-    bkmgrd.te \
-    device.te \
-    geomagneticd.te \
-    gpsd.te \
-    hostapd.te \
-    init.te \
-    install_recovery.te \
-    kernel.te \
-    macloader.te \
-    netd.te \
-    radio.te \
-    recovery.te \
-    rild.te \
-    shell.te \
-    system_app.te \
-    system_server.te \
-    tvserver.te \
-    uncrypt.te \
-    untrusted_app.te \
-    vclmk.te \
-    vold.te \
-    wpa.te
+#BOARD_SEPOLICY_DIRS += device/samsung/galaxys2plus-common/sepolicy

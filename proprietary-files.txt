@@ -27,7 +27,6 @@ etc/DiamondVoice_NB.txt
 etc/DiamondVoice_WB.txt
 etc/gps/glconfig.xml
 etc/gps.conf
-etc/media_profiles.xml
 etc/sensors.conf
 etc/srm.bin
 etc/tinyucm.conf
@@ -98,9 +97,7 @@ lib/libvchwtest_driver.so
 lib/libvcos.so
 lib/libVCOS.so
 lib/libvcsm.so
-lib/libwvdrm_L3.so
 lib/libWFC.so
-lib/libWVStreamControlAPI_L3.so
 
 # Modules
 lib/modules/VoiceSolution.ko
@@ -116,4 +113,3 @@ vendor/lib/egl/libGLES_vc4.so
 vendor/lib/hw/camera.capri.so
 vendor/lib/hw/gralloc.capri.so
 vendor/lib/hw/hwcomposer.capri.so
-vendor/lib/hw/power.capri.so

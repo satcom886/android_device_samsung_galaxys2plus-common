@@ -36,6 +36,11 @@ PRODUCT_COPY_FILES += \
 
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 
+# GPS/RIL
+PRODUCT_PACKAGES += \
+    libstlport \
+    libglgps-compat
+
 # Open-source HALs
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -51,7 +56,9 @@ USE_CUSTOM_AUDIO_POLICY := 1
 
 # Media
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml
+    $(COMMON_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml \
+    $(COMMON_PATH)/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+    $(COMMON_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
