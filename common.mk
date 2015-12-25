@@ -31,9 +31,12 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
     $(COMMON_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
-# GPS/RIL
+# Stlport
 PRODUCT_PACKAGES += \
-    libstlport \
+    libstlport
+
+# GPS
+PRODUCT_PACKAGES += \
     libglgps-compat
 
 # Open-source HALs
