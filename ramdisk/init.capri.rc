@@ -6,8 +6,6 @@ on early-init
 
     mkdir /efs 0771 radio system
 
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
-
 on init
     # Videocore
     chmod 0660 /proc/vc-dnfo
@@ -26,21 +24,76 @@ on init
     chmod 0660 /proc/vc-hnfo
     write /proc/vc-hnfo "resolution 0"
 
+    mkdir /tmp
+    mount tmpfs tmpfs /tmp
+    chmod 1775 /tmp
+
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
 
     symlink /dev/block/mmcblk0p11 /dev/block/param
 
-    # We will create our own ril-daemon service with different perm
+    # We will create our own ril-daemon service with different perm and sockets
     stop ril-daemon
+
+on post-fs-data
+    # Set indication (checked by vold) that we have finished this action
+    setprop vold.post_fs_data_done 1
+
+    restorecon_recursive /sys/devices/system/cpu/cpufreq/ondemand
+
+    # for wifi
+    mkdir /efs/wifi 0775 radio system
+    mkdir /efs/bluetooth 0775 radio system
+    mkdir /efs/imei 0775 radio system
+    mkdir /data/misc/wifi 0775 wifi system
+    mkdir /data/misc/dhcp 0775 dhcp dhcp
+    chown system system /efs/wifi/.mac.info
+    chmod 0664 /efs/wifi/.mac.info
+    chown system system /efs/imei/.nvmac.info
+    chmod 0664 /efs/imei/.nvmac.info
+    chown wifi root /dev/rfkill
+
+    # for TRP/TIS
+    write /data/.psm.info 1
+    chown system root /data/.psm.info
+    chmod 0660 /data/.psm.info
+
+    # for ASE application
+    mkdir /data/brcm
+    mkdir /data/brcm/ase
+    mkdir /data/brcm/ase/extras
+    mkdir /data/brcm/ase/scripts
+    chmod 0775 /data/brcm
+    chmod 0775 /data/brcm/ase
+    chmod 0775 /data/brcm/ase/extras
+    chmod 0775 /data/brcm/ase/scripts
+    mkdir /data/brcm/utils
+    chmod 0775 /data/brcm/utils
+
+    chmod 0660 /proc/vc
+    chmod 0660 /proc/vc/display
+    chmod 0660 /proc/vc/display/vchiq_control
+    write /proc/vc/display/vchiq_control "earlysuspctrl "
+    write /proc/vc/display/vchiq_control "autosuspend "
+
+    chown system system /sys/class/backlight/panel/brightness
+    chmod 0660 /sys/class/backlight/panel/brightness
+
+    chown system system /sys/class/leds/button-backlight/brightness
+    chmod 0660 /sys/class/leds/button-backlight/brightness
+
+    # for HDCP 1.x
+    chown system system /efs/hdcp.keys
+    chmod 0640 /efs/hdcp.keys
 
 on boot
     # SISO-ANDR_PERF :: START Changing scheduler to noop during boot
     setprop sys.io.scheduler noop
     # SISO-ANDR_PERF :: END
 
-    # Permissions for Bluetooth
+    # Permissions for bluetooth
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
     chown bluetooth net_bt_stack ro.bt.bdaddr_path
     chown bluetooth net_bt_stack /dev/ttyS2
@@ -52,45 +105,20 @@ on boot
     restorecon /sys/class/rfkill/rfkill0/type
 
     # Permissions for sensors (accelerometer & magnetic & proximity)
-
-    chown root system /dev/mpu6k
-    chmod 0660 /dev/mpu6k
-
     chown root system /dev/proximity
     chmod 0660 /dev/proximity
-
     chown system system /sys/class/input/input0/enable
     chown system system /sys/class/input/input0/poll_delay
     chmod 0660 /sys/class/input/input0/enable
     chmod 0660 /sys/class/input/input0/poll_delay
-
     chown system system /sys/class/input/input1/enable
     chown system system /sys/class/input/input1/poll_delay
     chmod 0660 /sys/class/input/input1/enable
     chmod 0660 /sys/class/input/input1/poll_delay
-
     chown system system /sys/class/input/input2/enable
     chown system system /sys/class/input/input2/poll_delay
     chmod 0660 /sys/class/input/input2/enable
     chmod 0660 /sys/class/input/input2/poll_delay
-
-    # Permissions for other sensors
-    chown system radio /sys/class/input/input3/enable
-    chown system radio /sys/class/input/input3/poll_delay
-    chown system radio /sys/class/input/input4/enable
-    chown system radio /sys/class/input/input4/poll_delay
-    chown system radio /sys/class/input/input5/enable
-    chown system radio /sys/class/input/input5/poll_delay
-    chown system radio /sys/class/input/input6/enable
-    chown system radio /sys/class/input/input6/poll_delay
-    chown system radio /sys/class/input/input7/enable
-    chown system radio /sys/class/input/input7/poll_delay
-    chown system radio /sys/class/input/input8/enable
-    chown system radio /sys/class/input/input8/poll_delay
-    chown system radio /sys/class/input/input9/enable
-    chown system radio /sys/class/input/input9/poll_delay
-    chown system radio /sys/class/input/input10/enable
-    chown system radio /sys/class/input/input10/poll_delay
 
     # accelerometer
     chown system input /sys/class/input/input8/acc_enable
@@ -155,16 +183,32 @@ on boot
     chmod 0660 /sys/class/input/input11/status
     chmod 0660 /sys/class/input/input11/data
 
-    # <Sensors>
-    # Accelerometer sensor
+    # <Sensors & NFC>
+    # Input Events
+    chown system radio /sys/class/input/input3/enable
+    chown system radio /sys/class/input/input3/poll_delay
+    chown system radio /sys/class/input/input4/enable
+    chown system radio /sys/class/input/input4/poll_delay
+    chown system radio /sys/class/input/input5/enable
+    chown system radio /sys/class/input/input5/poll_delay
+    chown system radio /sys/class/input/input6/enable
+    chown system radio /sys/class/input/input6/poll_delay
+    chown system radio /sys/class/input/input7/enable
+    chown system radio /sys/class/input/input7/poll_delay
+    chown system radio /sys/class/input/input8/enable
+    chown system radio /sys/class/input/input8/poll_delay
+    chown system radio /sys/class/input/input9/enable
+    chown system radio /sys/class/input/input9/poll_delay
+    chown system radio /sys/class/input/input10/enable
+    chown system radio /sys/class/input/input10/poll_delay
+    # Accelerometer_sensor
     chown system radio /sys/class/sensors/accelerometer_sensor
     chown system radio /sys/class/sensors/accelerometer_sensor/raw_data
     chown system radio /sys/class/sensors/accelerometer_sensor/calibration
     chown system radio /sys/class/sensors/accelerometer_sensor/reactive_alert
     chown system radio /sys/class/sensors/accelerometer_sensor/vendor
     chown system radio /sys/class/sensors/accelerometer_sensor/name
-
-    # Proximity sensor
+    # Proximity_sensor
     chown system radio /sys/class/sensors/proximity_sensor/state
     chown system radio /sys/class/sensors/proximity_sensor/prox_avg
     chown system radio /sys/class/sensors/proximity_sensor/prox_cal
@@ -173,14 +217,12 @@ on boot
     chown system radio /sys/class/sensors/proximity_sensor/name
     chown system radio /sys/class/sensors/proximity_sensor/prox_offset_pass
     chown system radio /sys/class/sensors/proximity_sensor/prox_thresh
-
-    # Light sensor
+    # Light_sensor
     chown system radio /sys/class/sensors/light_sensor/lux
     chown system radio /sys/class/sensors/light_sensor/raw_data
     chown system radio /sys/class/sensors/light_sensor/vendor
     chown system radio /sys/class/sensors/light_sensor/name
-
-    # Gyro sensor
+    # Gyro_sensor
     chown system radio /sys/class/sensors/gyro_sensor/power_on
     chown system radio /sys/class/sensors/gyro_sensor/power_off
     chown system radio /sys/class/sensors/gyro_sensor/temperature
@@ -188,14 +230,14 @@ on boot
     chown system radio /sys/class/sensors/gyro_sensor/selftest_dps
     chown system radio /sys/class/sensors/gyro_sensor/vendor
     chown system radio /sys/class/sensors/gyro_sensor/name
-
-    # Magnetic sensor
+    # Magnetic_sensor
     chown system radio /sys/class/sensors/magnetic_sensor/raw_data
     chown system radio /sys/class/sensors/magnetic_sensor/selftest
     chown system radio /sys/class/sensors/magnetic_sensor/vendor
     chown system radio /sys/class/sensors/magnetic_sensor/name
 
-    # USB
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
+
     chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO0
     chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO1
     chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO2
@@ -205,7 +247,7 @@ on boot
     chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/TxCurrent
     chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/Squelch
 
-    # Required so RIL can open kernel RPC drivers
+    # required so RIL can open kernel RPC drivers
     chmod 0660 /dev/bcm_rpc
     chmod 0660 /dev/bcm_irpc
     chown radio radio /dev/bcm_rpc
@@ -213,6 +255,9 @@ on boot
 
     chmod 0660 /dev/bcm_atc
     chown shell system /dev/bcm_atc
+    mkdir /data/atx
+    chown system system /data/atx
+    chmod 0771 /data/atx
     chown system system /dev/bcm_log
     chmod 0660 /dev/bcm_log
     chown system system /dev/bcm_audio_log
@@ -225,27 +270,27 @@ on boot
     chown system system /dev/block/mmcblk0
     chmod 0660 /dev/block/mmcblk0
 
-    # Security driver
+    # security driver
     chmod 0660 /dev/bcm_security
-    chown radio system /dev/bcm_security
+    chown radio root /dev/bcm_security
     mkdir /data/sec 0770
     chown radio root /data/sec
 
     # Video Telephony
     chmod 0666 /dev/bcm_vsp
 
-    # Fake some battery state
+    # fake some battery state
     setprop status.battery.state Slow
     setprop status.battery.level 10
     setprop status.battery.level_raw  100
     setprop status.battery.level_scale 10
 
-    # Create /data/gps for GPS demon
-    mkdir /data/gps
+    # create /data/gps for GPS demon
+    mkdir /data/gps 0770 gps system
     chown gps system /data/gps
     chmod 0770 /data/gps
 
-    # For GPS files
+    # for GPS files
     write /sys/class/gpio/export 99
     chown gps system /sys/class/gpio/gpio99/value
     chown gps system /sys/class/gpio/gpio99/direction
@@ -254,22 +299,58 @@ on boot
 
     chmod 0660 /dev/bcm_gps
     chown radio radio /dev/bcm_gps
-    chown gps system /dev/bcm_cntin
-    chmod 0660 /dev/bcm_gps
-    chown radio radio /dev/bcm_gps
-    chown gps system /dev/bcm_gps
-    chown gps system /dev/bcm_cntin
 
     chown gps system /dev/ttyS3
     chmod 0770 /dev/ttyS3
 
     class_start default
 
-    # Allow user space (atx) access to kernel pm debug
+    # allow user space (atx) access to kernel pm debug
     chown system system /sys/module/capri_pm_dbg/parameters/debug
 
     # SEC_PRODUCT_FEATURE_COMMON_USE_MULTISIM
     setprop ro.multisim.simslotcount 1
+
+    # for multi csc
+    chown radio radio /proc/LinuStoreIII/efs_info
+    chmod 0664 /proc/LinuStoreIII/efs_info
+    # for protecting key string
+    chown radio radio /proc/LinuStoreIII/keystr
+    chmod 0664 /proc/LinuStoreIII/keystr
+    # for ril_prop
+    chown radio radio /proc/LinuStoreIII/ril_prop
+    chmod 0664 /proc/LinuStoreIII/ril_prop
+    # for fsbuild_check
+    chown radio radio /proc/LinuStoreIII/fsbuild_check
+    chmod 0664 /proc/LinuStoreIII/fsbuild_check
+    # for recovery_opts
+    chown system radio /proc/LinuStoreIII/recovery_opts
+    chmod 0664 /proc/LinuStoreIII/recovery_opts
+
+    # Audio (Earjack)
+    chown system radio /sys/class/audio/earjack/select_jack
+    chown system radio /sys/class/audio/earjack/key_state
+    chown system radio /sys/class/audio/earjack/state
+    chown media system /sys/class/audio/earjack/reselect_jack
+
+    # Permissions for touch
+    chown system radio /sys/class/sec/tsp/cmd
+
+    # Permissions for Touchkey
+    chown system radio /sys/class/sec/sec_touchkey/touchkey_menu
+    chown system radio /sys/class/sec/sec_touchkey/touchkey_back
+    chown system radio /sys/class/sec/sec_touchkey/touchkey_threshold
+
+    # Accy
+    chown radio system /sys/devices/platform/bcmpmu_accy/jiglock
+
+    # Permissions for Camera
+    chown system radio /sys/class/camera/rear/rear_camfw
+    chown system radio /sys/class/camera/rear/rear_camtype
+    chown system radio /sys/class/camera/rear/rear_flash
+    chown system radio /sys/class/camera/rear/isp_core
+    chown system radio /sys/class/camera/front/front_camfw
+    chown system radio /sys/class/camera/front/front_camtype
 
     # Voice Solution
     copy /system/etc/DiamondVoice_NB.txt /data/DiamondVoice_NB.txt
@@ -280,15 +361,34 @@ on boot
     chmod 0777 /data/DiamondVoice_Filter_NB.txt
     copy /system/etc/DiamondVoice_Filter_WB.txt /data/DiamondVoice_Filter_WB.txt
     chmod 0777 /data/DiamondVoice_Filter_WB.txt
-    copy /system/etc/DiamondVoice_SF_Filter_NB.txt /data/DiamondVoice_SF_Filter_NB.txt
-    chmod 0777 /data/DiamondVoice_SF_Filter_NB.txt
-    copy /system/etc/DiamondVoice_SF_Filter_WB.txt /data/DiamondVoice_SF_Filter_WB.txt
-    chmod 0777 /data/DiamondVoice_SF_Filter_WB.txt
     insmod /system/lib/modules/VoiceSolution.ko
 
-    # Vibrator intensity
+    # permission for HDMI audio path
+    chown media audio /sys/class/hdmi_audio/hdmi_audio/hdmi_audio_set_ext
+
+    # HDCP 2.x
+    mkdir /data/system/hdcp2 0775 system system
+
+    # h2k permission
+    chown radio system /efs/redata.bin
+    chmod 0644 /efs/h2k.dat
+    mkdir /data/misc/radio/hatp 0775 radio system
+
+    # vibrator intensity
     chmod 0660 /sys/class/timed_output/vibrator/pwm_value
     chown system system /sys/class/timed_output/vibrator/pwm_value
+
+on charger
+    # set cpu governor to powersave while in charging mode
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+    # EHCI runtime enable for LPA
+    write /sys/devices/platform/s5p-ehci/power/control auto
+
+    chmod 0660 /proc/vc
+    chmod 0660 /proc/vc/display
+    chmod 0660 /proc/vc/display/vchiq_control
+    write /proc/vc/display/vchiq_control "earlysuspctrl "
+    write /proc/vc/display/vchiq_control "autosuspend "
 
 on fs
     mount_all /fstab.capri
@@ -311,20 +411,15 @@ on fs
     chown nfc nfc /dev/bcm2079x
     mkdir /data/bcmnfc
     mkdir /data/bcmnfc/param
-    copy /system/etc/route.xml /data/bcmnfc/param/route.xml
     chmod 0755 /data/bcmnfc
     chmod 0755 /data/bcmnfc/param
-    chmod 0755 /data/bcmnfc/param/route.xml
     chown nfc nfc /data/bcmnfc
     chown nfc nfc /data/bcmnfc/param
-    chown nfc nfc /data/bcmnfc/param/route.xml
 
     # Permissions for LCD
+    chown system system /sys/class/lcd/panel/power_reduce
     chown system system /sys/class/backlight/panel/auto_brightness
     chmod 0644 /sys/class/backlight/panel/auto_brightness
-
-    # MDNIE
-    chown system system /sys/class/lcd/panel/power_reduce
 
     # OTG_TEST
     chown system radio /sys/class/host_notify/usb_otg/booster
@@ -338,74 +433,7 @@ on post-fs
     chown radio system /efs
     chmod 0771 /efs
 
-on post-fs-data
-    # Set indication (checked by vold) that we have finished this action
-    setprop vold.post_fs_data_done 1
-
-    restorecon_recursive /sys/devices/system/cpu/cpufreq/ondemand
-
-    # for Wi-Fi
-    mkdir /efs/wifi 0775 radio system
-    mkdir /efs/bluetooth 0775 radio system
-    mkdir /efs/imei 0775 radio system
-    mkdir /data/misc/wifi 0775 wifi system
-    mkdir /data/misc/dhcp 0775 dhcp dhcp
-    chown system system /efs/wifi/.mac.info
-    chmod 0664 /efs/wifi/.mac.info
-    chown system system /efs/imei/.nvmac.info
-    chmod 0664 /efs/imei/.nvmac.info
-    chown wifi root /dev/rfkill
-
-    # for TRP/TIS
-    write /data/.psm.info 1
-    chown system root /data/.psm.info
-    chmod 0660 /data/.psm.info
-
-    # for ASE application
-    mkdir /data/brcm
-    mkdir /data/brcm/ase
-    mkdir /data/brcm/ase/extras
-    mkdir /data/brcm/ase/scripts
-    chmod 0775 /data/brcm
-    chmod 0775 /data/brcm/ase
-    chmod 0775 /data/brcm/ase/extras
-    chmod 0775 /data/brcm/ase/scripts
-    mkdir /data/brcm/utils
-    chmod 0775 /data/brcm/utils
-
-    chmod 0660 /proc/vc
-    chmod 0660 /proc/vc/display
-    chmod 0660 /proc/vc/display/vchiq_control
-    write /proc/vc/display/vchiq_control "earlysuspctrl "
-    write /proc/vc/display/vchiq_control "autosuspend "
-
-    chown system system /sys/class/backlight/panel/brightness
-    chmod 0660 /sys/class/backlight/panel/brightness
-
-    chown system system /sys/class/leds/button-backlight/brightness
-    chmod 0660 /sys/class/leds/button-backlight/brightness
-
-# for HDCP 1.x
-    chown system system /efs/hdcp.keys
-    chmod 0640 /efs/hdcp.keys
-
-on charger
-    # set cpu governor to powersave while in charging mode
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
-    # EHCI runtime enable for LPA
-    write /sys/devices/platform/s5p-ehci/power/control auto
-
-    chmod 0660 /proc/vc
-    chmod 0660 /proc/vc/display
-    chmod 0660 /proc/vc/display/vchiq_control
-    write /proc/vc/display/vchiq_control "earlysuspctrl "
-    write /proc/vc/display/vchiq_control "autosuspend "
-
-service charger /sbin/healthd -c
-    class charger
-    critical
-    seclabel u:r:healthd:s0
-
+# geomagneticd
 service geomagneticd /system/bin/geomagneticd
     class main
     user compass
@@ -418,7 +446,12 @@ service capri-ril-daemon /system/bin/rild
     user root
     group radio cache inet misc audio system sdcard_rw log sdcard_r
 
-# begin of Wi-Fi
+service charger /sbin/healthd -c
+    class charger
+    critical
+    seclabel u:r:healthd:s0
+
+# begin of wifi
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
@@ -487,7 +520,7 @@ on property:init.svc.macloader=stopped
     chmod 0664 /data/.cid.info
     chown system root /data/.rev
     chmod 0660 /data/.rev
-# end of Wi-Fi
+# end of wifi
 
 service gpsd /system/bin/glgps -c /system/etc/gps/glconfig.xml
     setenv LD_PRELOAD /system/lib/libglgps-compat.so
@@ -495,7 +528,7 @@ service gpsd /system/bin/glgps -c /system/etc/gps/glconfig.xml
     user gps
     group system sdcard_rw inet root radio wifi
 
-# TV Server
+# tvserver
 service tvserver /system/bin/tvserver
     class main
     user system
@@ -506,7 +539,7 @@ service tvserver /system/bin/tvserver
 # detection regulator, the tv-server needs to be explicitely disabled
 # as there is no other run time decision made otherwise by Android.
 #
-#    disabled
+# disabled
 
 # Run bkmgrd automatically on startup
 service bkmgrd /system/bin/bkmgrd
