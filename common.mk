@@ -20,10 +20,6 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/ramdisk/init.recovery.capri.rc:root/init.recovery.capri.rc \
     $(COMMON_PATH)/ramdisk/ueventd.capri.rc:root/ueventd.capri.rc
 
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-    setup_fs
-
 # Wi-Fi
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
