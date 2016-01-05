@@ -34,9 +34,13 @@ etc/Volume.db
 
 # Wi-Fi
 etc/wifi/bcmdhd_apsta.bin
+etc/wifi/bcmdhd_mfg.bin
 etc/wifi/bcmdhd_p2p.bin
 etc/wifi/bcmdhd_sta.bin
+etc/wifi/nvram_mfg.txt
+etc/wifi/nvram_mfg.txt_murata
 etc/wifi/nvram_net.txt
+etc/wifi/nvram_net.txt_murata
 
 # HW Libs
 lib/hw/alsa.default.so
