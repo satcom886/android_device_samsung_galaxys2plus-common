@@ -16,5 +16,5 @@
 /dev/block/mmcblk0p7                /modem       emmc     defaults                                                                defaults
 
 # vold-managed volumes
-/devices/platform/sdhci.3/mmc_host* auto         auto     defaults                                                                voldmanaged=sdcard1:auto,noemulatedsd,encryptable=userdata
+/devices/platform/sdhci.3/mmc_host* auto         auto     defaults                                                                voldmanaged=sdcard1:auto,encryptable=userdata
 /devices/platform/dwc_otg/usb*      auto         auto     defaults                                                                voldmanaged=usb:auto
