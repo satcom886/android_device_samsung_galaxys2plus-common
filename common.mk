@@ -74,8 +74,9 @@ PRODUCT_COPY_FILES += \
 
 # Packages
 PRODUCT_PACKAGES += \
+    charger_res_images \
     SamsungServiceMode \
-    charger_res_images
+    Snap
 
 # Permissions
 PRODUCT_COPY_FILES += \
