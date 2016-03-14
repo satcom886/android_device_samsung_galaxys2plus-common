@@ -234,8 +234,6 @@ on boot
     chown system radio /sys/class/sensors/magnetic_sensor/vendor
     chown system radio /sys/class/sensors/magnetic_sensor/name
 
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
-
     chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO0
     chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO1
     chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO2
