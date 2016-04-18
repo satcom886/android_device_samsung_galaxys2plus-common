@@ -11,14 +11,14 @@ DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
 TARGET_SCREEN_WIDTH := 480
 TARGET_SCREEN_HEIGHT := 800
 
-# Ramdisk
+# Init files
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/ramdisk/fstab.capri:root/fstab.capri \
-    $(COMMON_PATH)/ramdisk/init.bcm281x5.usb.rc:root/init.bcm281x5.usb.rc \
-    $(COMMON_PATH)/ramdisk/init.capri.rc:root/init.capri.rc \
-    $(COMMON_PATH)/ramdisk/init.log.rc:root/init.log.rc \
-    $(COMMON_PATH)/ramdisk/init.recovery.capri.rc:root/init.recovery.capri.rc \
-    $(COMMON_PATH)/ramdisk/ueventd.capri.rc:root/ueventd.capri.rc
+    $(COMMON_PATH)/rootdir/fstab.capri:root/fstab.capri \
+    $(COMMON_PATH)/rootdir/init.bcm281x5.usb.rc:root/init.bcm281x5.usb.rc \
+    $(COMMON_PATH)/rootdir/init.capri.rc:root/init.capri.rc \
+    $(COMMON_PATH)/rootdir/init.log.rc:root/init.log.rc \
+    $(COMMON_PATH)/rootdir/init.recovery.capri.rc:root/init.recovery.capri.rc \
+    $(COMMON_PATH)/rootdir/ueventd.capri.rc:root/ueventd.capri.rc
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
