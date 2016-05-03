@@ -34,8 +34,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.brcm.cp_crash=none \
     persist.brcm.gralloc.force_hdcp=1 \
     ro.tvout.enable=true \
-    wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=30
+    wifi.interface=wlan0
 
 # Dalvik heap
 PRODUCT_PROPERTY_OVERRIDES += \
