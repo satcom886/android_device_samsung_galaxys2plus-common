@@ -53,7 +53,6 @@ lib/libcate_rpc.so
 lib/libcontainers.so
 lib/libdebug_sym.so
 lib/libdispmanx.so
-lib/libdrmdecrypt.so
 lib/libhdcp.so
 lib/libhdcp2.so
 lib/libHDCPKeyManager.so
@@ -99,8 +98,8 @@ vendor/lib/hw/camera.capri.so
 vendor/lib/hw/gralloc.capri.so
 vendor/lib/hw/hwcomposer.capri.so
 vendor/lib/hw/lights.capri.so
+vendor/lib/libdrmmtkutil.so
 vendor/lib/libwvdrm_L3.so
 vendor/lib/libwvm.so
-vendor/lib/libWVphoneAPI.so
 vendor/lib/libWVStreamControlAPI_L3.so
 vendor/lib/mediadrm/libwvdrmengine.so
