@@ -34,6 +34,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.brcm.cp_crash=none \
     persist.brcm.gralloc.force_hdcp=1 \
     ro.tvout.enable=true \
+    config.disable_atlas=true \
     wifi.interface=wlan0
 
 # Dalvik heap
