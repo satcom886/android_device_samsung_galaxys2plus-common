@@ -92,6 +92,7 @@ WIFI_BAND                           := 802_11_ABG
 
 # healthd
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.capri
+WITH_CM_CHARGER := false
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
