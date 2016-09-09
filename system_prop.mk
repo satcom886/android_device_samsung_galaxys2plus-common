@@ -41,11 +41,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapgrowthlimit=56m
 
-# OTA Server Url
-PRODUCT_PROPERTY_OVERRIDES += \
-    cm.updater.uri=http://ghsr-update.appspot.com/api
-
 # Disable ADB authentication
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.adb.secure=0 \
-    ro.secure=0
+    ro.secure=0 \
+    ro.debuggable=1 \
+    persist.service.adb.enable=1

@@ -22,7 +22,6 @@ PRODUCT_COPY_FILES += \
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
-    dhcpcd.conf \
     hostapd \
     wpa_supplicant \
     wpa_supplicant.conf
@@ -72,7 +71,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     charger_res_images \
     Gello \
-    SamsungServiceMode \
     Snap
 
 # Permissions
@@ -97,7 +95,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
 # System properties
-$(call inherit-product, device/samsung/galaxys2plus-common/system_prop.mk)
+$(call inherit-product, $(COMMON_PATH)/system_prop.mk)
 
 # Dalvik heap config
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
