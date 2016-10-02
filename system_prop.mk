@@ -45,5 +45,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.adb.secure=0 \
     ro.secure=0 \
-    ro.debuggable=1 \
     persist.service.adb.enable=1
