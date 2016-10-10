@@ -51,7 +51,6 @@ TARGET_RECOVERY_DENSITY := hdpi
 USE_CLANG_PLATFORM_BUILD := true
 
 # Hardware rendering
-USE_OPENGL_RENDERER := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
 BOARD_USE_MHEAP_SCREENSHOT := true
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
@@ -97,7 +96,6 @@ WITH_CM_CHARGER := false
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 
 # Boot animation
