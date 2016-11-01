@@ -18,7 +18,8 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/init.capri.rc:root/init.capri.rc \
     $(COMMON_PATH)/rootdir/init.log.rc:root/init.log.rc \
     $(COMMON_PATH)/rootdir/init.recovery.capri.rc:root/init.recovery.capri.rc \
-    $(COMMON_PATH)/rootdir/ueventd.capri.rc:root/ueventd.capri.rc
+    $(COMMON_PATH)/rootdir/ueventd.capri.rc:root/ueventd.capri.rc \
+    $(COMMON_PATH)/rootdir/rild.rc:system/etc/init/rild.rc
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
