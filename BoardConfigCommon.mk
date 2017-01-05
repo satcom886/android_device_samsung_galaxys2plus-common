@@ -3,9 +3,6 @@ USE_CAMERA_STUB := true
 # Inherit from the proprietary version
 -include vendor/samsung/galaxys2plus-common/BoardConfigVendor.mk
 
-# Include path
-COMMON_PATH := device/samsung/galaxys2plus-common
-
 # Platform
 TARGET_BOARD_PLATFORM := capri
 
@@ -49,11 +46,11 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 1073741824
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/fstab.capri
+TARGET_RECOVERY_FSTAB := device/samsung/galaxys2plus-common/rootdir/fstab.capri
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 TARGET_RECOVERY_PIXEL_FORMAT := ABGR_8888
 TARGET_RECOVERY_DENSITY := hdpi
-BOARD_CUSTOM_BOOTIMG_MK := $(COMMON_PATH)/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxys2plus-common/mkbootimg.mk
 TARGET_NOT_USE_GZIP_RECOVERY_RAMDISK := true
 
 # Hardware rendering
@@ -64,19 +61,19 @@ TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
 BOARD_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS -DCAPRI_HWC -DREFBASE_JB_MR1_COMPAT_SYMBOLS
 
 # CMHW
-BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ $(COMMON_PATH)/cmhw/
+BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/galaxys2plus-common/cmhw/
 
 # RIL
-BOARD_RIL_CLASS := ../../../$(COMMON_PATH)/ril/
+BOARD_RIL_CLASS := ../../../device/samsung/galaxys2plus-common/ril/
 
 # GPS
-TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys2plus-common/include
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_CUSTOM_BT_CONFIG := $(COMMON_PATH)/bluetooth/libbt_vndcfg.txt
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
+BOARD_CUSTOM_BT_CONFIG := device/samsung/galaxys2plus-common/bluetooth/libbt_vndcfg.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/galaxys2plus-common/bluetooth
 
 # Camera
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
@@ -119,4 +116,4 @@ MALLOC_SVELTE := true
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 
 # SELinux
-BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += device/samsung/galaxys2plus-common/sepolicy
