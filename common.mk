@@ -73,6 +73,7 @@ PRODUCT_PACKAGES += \
     charger_res_images \
     Gello \
     SamsungDoze \
+    SamsungServiceMode \
     Snap
 
 # Permissions
