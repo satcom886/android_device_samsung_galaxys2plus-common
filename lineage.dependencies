@@ -1,13 +1,13 @@
 [
   {
     "remote": "github",
-    "repository": "ghsr/android_kernel_samsung_galaxys2plus-common",
+    "repository": "doriandiaconu/android_kernel_samsung_galaxys2plus-common",
     "target_path": "kernel/samsung/galaxys2plus-common",
     "revision": "android-7.1"
   },
   {
     "remote": "github",
-    "repository": "ghsr/proprietary_vendor_samsung_galaxys2plus-common",
+    "repository": "doriandiaconu/proprietary_vendor_samsung_galaxys2plus-common",
     "target_path": "vendor/samsung/galaxys2plus-common",
     "revision": "android-7.1"
   },
