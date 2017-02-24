@@ -72,8 +72,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     charger_res_images \
     SamsungDoze \
-    SamsungServiceMode \
-    Snap
+    SamsungServiceMode 
 
 # Permissions
 PRODUCT_COPY_FILES += \
