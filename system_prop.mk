@@ -38,3 +38,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.adb.secure=0 \
     ro.secure=0
+
+# BG Tuning
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.sys.fw.bg_apps_limit=8 \
+ro.config.low_ram=true \
+persist.sys.force_highendgfx=true
