@@ -73,7 +73,10 @@ PRODUCT_PACKAGES += \
     charger_res_images \
     SamsungDoze \
     SamsungServiceMode 
-    OTAUpdates
+    
+# OTA Updates
+PRODUCT_PACKAGES += \
+	OTAUpdates
 
 # Permissions
 PRODUCT_COPY_FILES += \
