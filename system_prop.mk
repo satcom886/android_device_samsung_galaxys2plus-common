@@ -46,4 +46,4 @@ ro.config.low_ram=true \
 persist.sys.force_highendgfx=true
 ro.ota.romname=Lineage OS
 ro.ota.version=20170608
-ro.ota.manifest=https://www.dropbox.com/s/hyxjavnqu0ecn7w/ota_s2vep.xml
+ro.ota.manifest=https://www.dropbox.com/s/hyxjavnqu0ecn7w/ota_s2vep.xml?dl=1
