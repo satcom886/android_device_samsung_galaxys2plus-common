@@ -45,5 +45,5 @@ ro.sys.fw.bg_apps_limit=8 \
 ro.config.low_ram=true \
 persist.sys.force_highendgfx=true \
 ro.ota.romname=Lineage OS \
-ro.ota.version=20170609 \
+ro.ota.version=20170610 \
 ro.ota.manifest=https://www.dropbox.com/s/hyxjavnqu0ecn7w/ota_s2vep.xml?dl=1
