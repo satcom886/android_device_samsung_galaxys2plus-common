@@ -46,4 +46,6 @@ ro.config.low_ram=true \
 persist.sys.force_highendgfx=true \
 ro.ota.romname=Lineage OS \
 ro.ota.version=20170628 \
-ro.ota.manifest=https://www.dropbox.com/s/hyxjavnqu0ecn7w/ota_s2vep.xml?dl=1
+ro.ota.manifest=https://www.dropbox.com/s/hyxjavnqu0ecn7w/ota_s2vep.xml?dl=1 \
+fw.show_multiuserui=1 \
+fw.max_users=3
