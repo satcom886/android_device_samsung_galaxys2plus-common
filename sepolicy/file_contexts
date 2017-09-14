@@ -76,7 +76,3 @@
 /sys/devices/platform/bcmbt-rfkill.1/rfkill/rfkill0/type  -- u:object_r:sysfs_bluetooth_writable:s0
 /sys/devices/platform/ld9040/lcd/panel/power_reduce  -- u:object_r:sysfs_writable:s0
 /sys/devices/virtual/timed_output/vibrator/pwm_value -- u:object_r:sysfs_writable:s0
-
-###################################
-# USB Gadget
-/dev/hidg(.*)                        u:object_r:hid_gadget_device:s0
