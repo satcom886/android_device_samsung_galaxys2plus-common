@@ -49,7 +49,7 @@ persist.sys.force_highendgfx=true \
 # Other tweaks
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.ota.romname=Lineage OS \
-ro.ota.version=20170913 \
+ro.ota.version=20170922 \
 ro.ota.manifest=https://www.dropbox.com/s/hyxjavnqu0ecn7w/ota_s2vep.xml?dl=1 \
 fw.show_multiuserui=1 \
 fw.max_users=5
