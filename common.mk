@@ -77,7 +77,6 @@ PRODUCT_PACKAGES += \
 # OTA Updates
 PRODUCT_PACKAGES += \
 	OTAUpdates
-	CMFilemanager
 
 # Permissions
 PRODUCT_COPY_FILES += \
