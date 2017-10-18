@@ -49,5 +49,5 @@ persist.sys.force_highendgfx=true \
 # Other tweaks
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.ota.romname=Lineage OS \
-ro.ota.version=20171012 \
+ro.ota.version=20171812 \
 ro.ota.manifest=https://www.dropbox.com/s/hyxjavnqu0ecn7w/ota_s2vep.xml?dl=1 
