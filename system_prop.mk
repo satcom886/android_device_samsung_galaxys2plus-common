@@ -42,12 +42,12 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 # BG Tuning
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.sys.fw.bg_apps_limit=8 \
-ro.config.low_ram=true \
+ro.config.low_ram=false \
 persist.sys.force_highendgfx=true \
 
 
 # Other tweaks
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.ota.romname=Lineage OS \
-ro.ota.version=20171122 \
+ro.ota.version=20171129 \
 ro.ota.manifest=https://www.dropbox.com/s/hyxjavnqu0ecn7w/ota_s2vep.xml?dl=1 
