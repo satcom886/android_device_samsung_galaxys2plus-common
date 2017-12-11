@@ -32,7 +32,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Dalvik heap
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapgrowthlimit=56m
+    dalvik.vm.heapgrowthlimit=64m
 
 # Disable ADB authentication
 ADDITIONAL_DEFAULT_PROPERTIES += \
